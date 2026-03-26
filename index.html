@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>DappRadar — Dapp Analytics, RADAR Token, Rankings &amp; How to Use Guide (2026)</title>
+  <meta name="description" content="Complete DappRadar guide (2026): how DappRadar tracks dapp activity across blockchains, how to read dapp rankings, what UAW and TVL metrics mean, RADAR token utility, how to use DappRadar for due diligence, NFT and DeFi analytics, and a deep FAQ.">
+  <meta name="author" content="Crypto Finance Experts">
+  <link rel="canonical" href="https://dappradar-guide.example.com/">
+  <link rel="icon" type="image/png" href="dap.png">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://dappradar-guide.example.com/">
+  <meta property="og:title" content="DappRadar — Dapp Analytics, Rankings &amp; RADAR Token Guide (2026)">
+  <meta property="og:description" content="Practical DappRadar guide: dapp rankings, UAW metrics, TVL data, RADAR token, NFT and DeFi analytics, and how to use DappRadar for research.">
+  <meta property="og:image" content="cover.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DappRadar — Dapp Analytics &amp; RADAR Token Guide (2026)">
+  <meta name="twitter:description" content="How DappRadar works, dapp rankings explained, UAW and TVL metrics, RADAR token utility, and research workflows for 2026.">
+
+  <style>
+    :root {
+      --l:    #A3E635;
+      --l2:   #84CC16;
+      --l3:   #65A30D;
+      --la:   #D9F99D;
+
+      --ink:   #F7FEE7;
+      --sub:   #ECFCCB;
+      --muted: #94A3B8;
+      --dim:   #64748B;
+
+      --bg:    #070A04;
+      --card:  rgba(255,255,255,.028);
+      --line:  rgba(255,255,255,.07);
+      --line-l:rgba(163,230,53,.11);
+
+      --ok:   #34D399;
+      --warn: #FBBF24;
+      --err:  #F87171;
+
+      --r:  12px;
+      --rl: 18px;
+      --gap: 1.2rem;
+      --sh: 0 8px 28px rgba(0,0,0,.55);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
+    html { scroll-behavior: smooth }
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      background-image:
+        radial-gradient(ellipse 800px 420px at 0%   0%,  rgba(101,163,13,.09), transparent 55%),
+        radial-gradient(ellipse 600px 340px at 100% 10%, rgba(163,230,53,.05), transparent 50%),
+        radial-gradient(ellipse 500px 300px at 50%  98%, rgba(132,204,22,.05), transparent 55%);
+      color: var(--muted);
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    a { color: var(--l2); text-decoration: none }
+    a:hover { text-decoration: underline }
+    img { max-width: 100%; height: auto; display: block }
+    strong { color: #F0FDF4; font-weight: 600 }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 1.4rem }
+
+    h1,h2,h3,h4 { color: var(--ink); line-height: 1.25 }
+    h1 { font-size: clamp(2rem,5vw,3.2rem); font-weight: 800; letter-spacing: -.4px }
+    h2 { font-size: clamp(1.25rem,2.5vw,1.75rem); font-weight: 700; margin-top: 1.8rem; padding-top: .7rem; border-top: 1px solid var(--line) }
+    h3 { font-size: 1.08rem; font-weight: 700; color: var(--sub) }
+    p,li,td,th { font-size: 1rem; line-height: 1.75 }
+    .lead { font-size: 1.08rem; color: #CBD5E1 }
+
+    header.hero { padding: clamp(2.5rem,6vw,5rem) 0 clamp(2rem,4vw,3.5rem); border-bottom: 1px solid var(--line) }
+    .hero-card {
+      background: var(--card); border: 1px solid var(--line-l);
+      border-radius: var(--rl); padding: clamp(1.4rem,3.5vw,2.2rem); box-shadow: var(--sh);
+    }
+    .brand-row { display: flex; align-items: center; gap: .9rem; margin-bottom: 1rem }
+    .brand-logo {
+      width: 54px; height: 54px; border-radius: 13px;
+      border: 1px solid rgba(163,230,53,.20); background: rgba(101,163,13,.08);
+      padding: .3rem; object-fit: contain; box-shadow: 0 6px 18px rgba(0,0,0,.40); flex: 0 0 auto;
+    }
+    .brand-label { color: var(--dim); font-size: .85rem; font-weight: 600; text-transform: uppercase; letter-spacing: .4px }
+    .brand-sub   { color: var(--muted); font-size: .85rem }
+
+    .cta-center { display: flex; justify-content: center; margin-top: 1.6rem }
+    .cta {
+      display: inline-flex; align-items: center; gap: .55rem;
+      background: linear-gradient(135deg, #A3E635, #84CC16 50%, #65A30D);
+      color: #1a2e00; padding: 1.1rem 2.5rem;
+      border-radius: 13px; font-weight: 800; font-size: 1.05rem;
+      box-shadow: 0 0 0 1px rgba(163,230,53,.22), 0 6px 20px rgba(132,204,22,.22), 0 20px 44px rgba(101,163,13,.18);
+      border: none; cursor: pointer; text-decoration: none;
+      transition: transform .16s, box-shadow .16s, filter .16s;
+    }
+    .cta:hover {
+      transform: translateY(-3px) scale(1.02); filter: brightness(1.07);
+      text-decoration: none; color: #1a2e00;
+      box-shadow: 0 0 0 1px rgba(163,230,53,.35), 0 10px 26px rgba(132,204,22,.30), 0 26px 52px rgba(101,163,13,.24);
+    }
+
+    .note {
+      border-left: 3px solid var(--l2); padding: .8rem 1rem;
+      background: rgba(101,163,13,.08); border-radius: 0 9px 9px 0;
+      color: var(--sub); margin-top: 1rem;
+    }
+
+    section.step-guide { padding: clamp(2rem,5vw,3.5rem) 0 }
+    .steps { display: grid; gap: var(--gap); grid-template-columns: 1fr }
+    .step {
+      background: var(--card); border: 1px solid var(--line);
+      border-top: 2px solid rgba(163,230,53,.22); border-radius: var(--r);
+      padding: 1.25rem; box-shadow: var(--sh); transition: transform .18s;
+    }
+    .step:hover { transform: translateY(-3px) }
+    .step .icon {
+      width: 44px; height: 44px; border-radius: 9px;
+      display: inline-grid; place-items: center;
+      background: rgba(101,163,13,.10); margin-bottom: .65rem;
+      font-weight: 800; font-size: .95rem; color: var(--l);
+      border: 1px solid rgba(163,230,53,.18);
+    }
+
+    main .card {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: var(--r); padding: 1.4rem; margin: 1.2rem 0; box-shadow: var(--sh);
+    }
+    main .card > h2:first-child { margin-top: 0; border-top: none; padding-top: 0 }
+
+    .toc { border: 1px solid var(--line-l); background: rgba(101,163,13,.05); border-radius: var(--r); padding: 1.1rem 1.3rem }
+    .toc strong { color: var(--ink) }
+    .toc ul { margin: .5rem 0 0; padding-left: 1.1rem }
+    .toc li { margin: .28rem 0; font-size: .96rem }
+    .toc a { font-weight: 600 }
+
+    .grid-2 { display: grid; gap: var(--gap); grid-template-columns: 1fr }
+    .callout-grid { display: grid; gap: var(--gap); grid-template-columns: 1fr; margin-top: .8rem }
+    .mini { background: rgba(255,255,255,.02); border: 1px solid var(--line); border-radius: var(--r); padding: 1rem }
+    .mini h3 { margin-bottom: .35rem }
+    .kpi-badges { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .55rem }
+    .kpi-badges span {
+      border: 1px solid rgba(163,230,53,.18); background: rgba(101,163,13,.08);
+      color: var(--sub); padding: .26rem .54rem; border-radius: 999px; font-size: .87rem; font-weight: 600;
+    }
+
+    .table-wrap { overflow-x: auto; border-radius: var(--r); border: 1px solid var(--line) }
+    table { width: 100%; border-collapse: collapse; min-width: 480px }
+    th,td { padding: .8rem .95rem; border-bottom: 1px solid var(--line); text-align: left }
+    th { background: rgba(101,163,13,.07); color: var(--ink); font-weight: 700; font-size: .93rem }
+    tr.hi { background: rgba(101,163,13,.04) }
+    tr:hover td { background: rgba(255,255,255,.018) }
+    tr:last-child td { border-bottom: none }
+    .ok { color: var(--ok) } .warn { color: var(--warn) } .err { color: var(--err) }
+
+    .eeat { background: var(--card); border: 1px solid var(--line-l); border-radius: var(--r); padding: 1.4rem; box-shadow: var(--sh) }
+    .eeat > h2:first-child { margin-top: 0; border-top: none; padding-top: 0 }
+
+    .faq-item { border-bottom: 1px solid var(--line); padding: .9rem 0 }
+    .faq-item:last-child { border-bottom: none }
+    .faq-button { all: unset; display: flex; justify-content: space-between; align-items: flex-start; width: 100%; cursor: pointer; gap: 1rem }
+    .faq-button:focus-visible { outline: 2px solid var(--l2); border-radius: 4px }
+    .faq-button h3 { margin: 0; font-weight: 700; font-size: 1rem; line-height: 1.4 }
+    .faq-content { max-height: 0; overflow: hidden; transition: max-height .26s ease }
+    .faq-content.open { padding-top: .65rem }
+    .faq-plus { font-weight: 800; font-size: 1.35rem; color: var(--l2); flex: 0 0 auto; line-height: 1; transition: transform .2s }
+    .faq-button[aria-expanded="true"] .faq-plus { transform: rotate(45deg) }
+
+    @media(min-width:860px){
+      .steps { grid-template-columns: repeat(4,1fr) }
+      .grid-2 { grid-template-columns: 1fr 1fr }
+      .callout-grid { grid-template-columns: 1fr 1fr }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero" role="banner">
+  <div class="container">
+    <div class="hero-card">
+      <div class="brand-row">
+        <img class="brand-logo" src="dap.png" alt="DappRadar logo">
+        <div>
+          <div class="brand-label">Complete Analytics Guide</div>
+          <div class="brand-sub">Dapp Rankings · UAW Metrics · TVL Data · RADAR Token · NFT &amp; DeFi Analytics</div>
+        </div>
+      </div>
+
+      <h1>DappRadar</h1>
+      <p class="lead" style="margin-top:.7rem">
+        The complete guide to <strong>DappRadar</strong> — the world's leading <strong>dapp analytics and discovery platform</strong>
+        tracking activity across 50+ blockchains and thousands of decentralised applications.
+        Understand how DappRadar measures <strong>Unique Active Wallets (UAW)</strong> and why it matters,
+        how to read <strong>dapp rankings</strong> across DeFi, NFT, gaming, and social categories,
+        what the <strong>RADAR governance token</strong> unlocks, how to use DappRadar for
+        <strong>due diligence on protocols and collections</strong>,
+        and how it compares to other <strong>on-chain analytics tools</strong>.
+      </p>
+
+      <div class="cta-center">
+        <a href="#" class="cta" aria-label="Open DappRadar">
+          <span>◉</span> Open DappRadar
+        </a>
+      </div>
+
+      <div class="note">
+        <strong>What DappRadar is:</strong> An analytics and discovery layer — not a DEX or wallet.
+        It shows you on-chain activity data about dapps, NFT collections, and blockchain ecosystems.
+        High UAW numbers are a signal worth investigating, but always verify with on-chain data
+        and independent contract research before committing capital.
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- STEPS -->
+<section class="step-guide" aria-labelledby="how-works">
+  <div class="container">
+    <h2 id="how-works" style="margin-top:0;border-top:none;padding-top:0">
+      How DappRadar Works: Track → Rank → Analyse → Discover
+    </h2>
+    <div class="steps" role="list">
+      <article class="step" role="listitem">
+        <div class="icon">01</div>
+        <h3>On-chain activity indexed across 50+ chains</h3>
+        <p>DappRadar continuously indexes smart contract interactions on every supported blockchain — counting unique wallets, transaction volume, and value locked for every tracked dapp in real time.</p>
+      </article>
+      <article class="step" role="listitem">
+        <div class="icon">02</div>
+        <h3>Dapps ranked by category and chain</h3>
+        <p>Rankings surface the most active dapps by UAW, volume, or TVL across DeFi, NFTs, games, social, gambling, and other categories — filterable by chain, time period, and metric type.</p>
+      </article>
+      <article class="step" role="listitem">
+        <div class="icon">03</div>
+        <h3>Deep analytics per dapp and collection</h3>
+        <p>Each dapp page shows historical UAW trends, transaction volumes, TVL changes, and user behaviour patterns. NFT collection pages show floor price history, sales volume, and holder analytics.</p>
+      </article>
+      <article class="step" role="listitem">
+        <div class="icon">04</div>
+        <h3>Industry reports and market insights</h3>
+        <p>DappRadar publishes regular industry reports on blockchain gaming, DeFi, NFT market trends, and overall dapp ecosystem health — used by researchers, investors, and developers worldwide.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main class="container" role="main">
+
+  <section class="card toc" aria-label="Table of Contents">
+    <strong>On this page — DappRadar:</strong>
+    <ul>
+      <li><a href="#overview">What is DappRadar and what data does it track</a></li>
+      <li><a href="#uaw">UAW explained: what Unique Active Wallets means and its limitations</a></li>
+      <li><a href="#rankings">How to read dapp rankings: DeFi, NFT, gaming, and social</a></li>
+      <li><a href="#metrics">Key DappRadar metrics: TVL, volume, transactions, and balance</a></li>
+      <li><a href="#nft">DappRadar NFT analytics: collections, floor price, and market trends</a></li>
+      <li><a href="#defi">DappRadar DeFi analytics: protocol TVL and chain dominance</a></li>
+      <li><a href="#gaming">Blockchain gaming analytics on DappRadar</a></li>
+      <li><a href="#radar">RADAR token: utility, staking, and governance</a></li>
+      <li><a href="#due-diligence">Using DappRadar for protocol and collection due diligence</a></li>
+      <li><a href="#comparison">DappRadar vs DeFiLlama vs Nansen vs Messari</a></li>
+      <li><a href="#best-practices">Best practices for using DappRadar effectively</a></li>
+      <li><a href="#troubleshooting">Troubleshooting: missing dapps, data discrepancies, metric questions</a></li>
+      <li><a href="#eeat">Authoritative sources &amp; references</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section class="card" id="overview">
+    <h2>What Is DappRadar and What Data Does It Track?</h2>
+    <p>
+      <strong>DappRadar</strong> launched in 2018 as the first comprehensive dapp analytics platform
+      and has grown into the industry standard for cross-chain dapp activity tracking.
+      It monitors smart contract interactions across 50+ blockchains, covering every major category
+      of decentralised application — from DeFi protocols and NFT marketplaces to blockchain games,
+      social platforms, and utility dapps.
+    </p>
+    <p>
+      The platform's core value is aggregation: instead of tracking Ethereum dapps on one site,
+      Solana dapps on another, and BNB Chain games on a third, DappRadar brings all of this data
+      into a unified interface with consistent metrics and cross-chain comparison tools.
+    </p>
+
+    <div class="callout-grid">
+      <div class="mini">
+        <h3>For investors and researchers</h3>
+        <p style="color:var(--muted)">Identify which protocols and chains are genuinely growing in user activity, compare TVL trends across DeFi protocols, spot emerging trends in gaming or NFTs before they become mainstream.</p>
+        <div class="kpi-badges"><span>Trend discovery</span><span>Cross-chain</span><span>Historical data</span></div>
+      </div>
+      <div class="mini">
+        <h3>For developers and founders</h3>
+        <p style="color:var(--muted)">Benchmark your dapp against category competitors, understand user acquisition trends, and access DappRadar's API to integrate activity data into your own analytics stack.</p>
+        <div class="kpi-badges"><span>Competitive intel</span><span>API access</span><span>Developer tools</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UAW -->
+  <section class="card" id="uaw">
+    <h2>UAW Explained: What Unique Active Wallets Means, How It's Counted, and Its Limitations</h2>
+    <p>
+      <strong>Unique Active Wallets (UAW)</strong> is DappRadar's primary engagement metric —
+      the count of distinct wallet addresses that interacted with a specific dapp's smart contracts
+      within a given time period (24 hours, 7 days, or 30 days).
+    </p>
+
+    <div class="callout-grid">
+      <div class="mini">
+        <h3>What UAW measures</h3>
+        <p style="color:var(--muted)">The number of unique on-chain wallet addresses that sent at least one transaction to the dapp's smart contracts in the selected time window. It's a proxy for user activity — not user count, not revenue, not retention.</p>
+        <div class="kpi-badges"><span>On-chain addresses</span><span>Activity proxy</span><span>Not users</span></div>
+      </div>
+      <div class="mini">
+        <h3>UAW limitations</h3>
+        <p style="color:var(--muted)">One person can use multiple wallets (inflating UAW). Bots and automated contracts create wallet addresses that interact with contracts (inflating UAW). Airdrops and incentive programs attract temporary activity that disappears afterward.</p>
+        <div class="kpi-badges"><span>Bot inflation</span><span>Multi-wallet users</span><span>Incentive distortion</span></div>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>How to use UAW correctly:</strong> Don't treat UAW as a headcount of real users.
+      Use it as a <em>relative trend indicator</em> — is this dapp's UAW growing or declining over time?
+      How does it compare to category competitors? Sudden UAW spikes often coincide with
+      airdrop programmes or incentive events and may not reflect genuine sustained adoption.
+    </div>
+  </section>
+
+  <!-- RANKINGS -->
+  <section class="card" id="rankings">
+    <h2>How to Read DappRadar Dapp Rankings: Categories, Filters, and What the Numbers Mean</h2>
+    <p>
+      DappRadar's rankings are filterable across multiple dimensions. Understanding each filter
+      helps you extract meaningful insight rather than raw numbers.
+    </p>
+
+    <div class="table-wrap">
+      <table aria-label="Rankings filters explained">
+        <thead>
+          <tr><th>Filter</th><th>Options</th><th>Best used for</th></tr>
+        </thead>
+        <tbody>
+          <tr class="hi">
+            <td>Category</td>
+            <td>DeFi, NFT, Games, Social, Gambling, Utilities, All</td>
+            <td>Comparing within a vertical — DeFi vs DeFi, game vs game</td>
+          </tr>
+          <tr>
+            <td>Blockchain</td>
+            <td>Ethereum, BNB Chain, Polygon, Solana, WAX, + 45 more</td>
+            <td>Assessing chain-specific ecosystem health and dapp dominance</td>
+          </tr>
+          <tr class="hi">
+            <td>Sort by</td>
+            <td>UAW, Volume, Transactions, Balance (TVL)</td>
+            <td>UAW for engagement, Volume for economic activity, TVL for DeFi depth</td>
+          </tr>
+          <tr>
+            <td>Time period</td>
+            <td>24h, 7d, 30d</td>
+            <td>24h for trending, 30d for sustained growth signals</td>
+          </tr>
+          <tr class="hi">
+            <td>Status</td>
+            <td>Live, Beta, Inactive</td>
+            <td>Filter out inactive dapps to focus on live protocols</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <strong>Best ranking workflow:</strong> Start with 30-day UAW in your target category and chain.
+      This removes short-term noise and shows which dapps have genuine sustained user bases.
+      Then drill into the top performers to examine their historical trends — a dapp
+      ranked #1 today that was #50 last month is more interesting than a stable incumbent.
+    </div>
+  </section>
+
+  <!-- METRICS -->
+  <section class="card" id="metrics">
+    <h2>Key DappRadar Metrics: TVL, Volume, Transactions, and Balance Explained</h2>
+
+    <div class="table-wrap">
+      <table aria-label="Metrics definitions">
+        <thead>
+          <tr><th>Metric</th><th>Definition</th><th>What it tells you</th></tr>
+        </thead>
+        <tbody>
+          <tr class="hi">
+            <td>UAW (Unique Active Wallets)</td>
+            <td>Distinct addresses interacting with the dapp's contracts</td>
+            <td>Engagement breadth — how many wallets are using this dapp</td>
+          </tr>
+          <tr>
+            <td>Volume</td>
+            <td>Total value of assets transacted through the dapp's contracts</td>
+            <td>Economic activity — high volume with low UAW = power users or whales</td>
+          </tr>
+          <tr class="hi">
+            <td>Transactions</td>
+            <td>Total number of smart contract calls in the period</td>
+            <td>Interaction frequency — multiple transactions per wallet shows engagement depth</td>
+          </tr>
+          <tr>
+            <td>Balance / TVL</td>
+            <td>Value of assets currently held in the dapp's contracts</td>
+            <td>Capital commitment — for DeFi, TVL reflects confidence and liquidity depth</td>
+          </tr>
+          <tr class="hi">
+            <td>Transactions per UAW</td>
+            <td>Volume ÷ UAW or Transactions ÷ UAW (derived)</td>
+            <td>Engagement quality — high ratio means users interact frequently, not just once</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- NFT -->
+  <section class="card" id="nft">
+    <h2>DappRadar NFT Analytics: Collections, Floor Price, Sales Volume, and Market Trends</h2>
+    <p>
+      DappRadar's NFT section tracks marketplace activity across Ethereum, Solana, Polygon,
+      and other chains — providing collection-level analytics that help assess an NFT project's
+      genuine market health beyond Twitter hype.
+    </p>
+
+    <div class="callout-grid">
+      <div class="mini">
+        <h3>Collection analytics</h3>
+        <p style="color:var(--muted)">Floor price trends, sales volume over time, number of sales, unique buyers/sellers, and average sale price. Use 30-day trends to distinguish sustained collections from short-lived hype cycles.</p>
+        <div class="kpi-badges"><span>Floor history</span><span>Volume trends</span><span>Buyer diversity</span></div>
+      </div>
+      <div class="mini">
+        <h3>Marketplace rankings</h3>
+        <p style="color:var(--muted)">Compare NFT marketplaces by volume, traders, and sales — useful for assessing which platforms have genuine liquidity for a given collection rather than just the highest-profile brand.</p>
+        <div class="kpi-badges"><span>Marketplace TVL</span><span>Trader count</span><span>Platform depth</span></div>
+      </div>
+      <div class="mini">
+        <h3>NFT market overview</h3>
+        <p style="color:var(--muted)">Aggregate market data — total NFT market volume by chain, top-performing collections across categories (art, gaming items, PFPs), and market cycle indicators across time periods.</p>
+        <div class="kpi-badges"><span>Market cycles</span><span>Chain breakdown</span><span>Category trends</span></div>
+      </div>
+      <div class="mini">
+        <h3>Red flags in NFT data</h3>
+        <p style="color:var(--muted)">Volume spikes with very few unique buyers (wash trading), floor price manipulation through related-wallet sales, or declining traders with increasing sales price all warrant deeper investigation.</p>
+        <div class="kpi-badges"><span>Wash trading signal</span><span>Buyer concentration</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEFI -->
+  <section class="card" id="defi">
+    <h2>DappRadar DeFi Analytics: Protocol TVL, Chain Dominance, and Sector Trends</h2>
+    <p>
+      DappRadar's DeFi section complements dedicated TVL trackers like DeFiLlama with additional
+      user activity metrics — letting you assess not just how much capital a protocol holds,
+      but how many wallets are actively using it.
+    </p>
+
+    <div class="table-wrap">
+      <table aria-label="DeFi analytics use cases">
+        <thead>
+          <tr><th>Analysis goal</th><th>Metric to use</th><th>Insight gained</th></tr>
+        </thead>
+        <tbody>
+          <tr class="hi">
+            <td>Find growing DeFi protocols</td>
+            <td>UAW growth over 30 days, sorted by % change</td>
+            <td>Protocols gaining real user traction — not just TVL growth from price appreciation</td>
+          </tr>
+          <tr>
+            <td>Assess DeFi chain health</td>
+            <td>Chain filter — compare total DeFi UAW by chain</td>
+            <td>Which chains are gaining DeFi users vs. losing them over time</td>
+          </tr>
+          <tr class="hi">
+            <td>Identify whale-heavy protocols</td>
+            <td>High volume + low UAW ratio</td>
+            <td>Protocols where a small number of large wallets dominate activity</td>
+          </tr>
+          <tr>
+            <td>Compare protocol retention</td>
+            <td>7-day UAW vs. 30-day UAW trend</td>
+            <td>Falling 7-day UAW vs. stable 30-day = fading momentum after an event</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- GAMING -->
+  <section class="card" id="gaming">
+    <h2>Blockchain Gaming Analytics on DappRadar: UAW, In-Game Volume, and Chain Trends</h2>
+    <p>
+      Blockchain gaming is consistently one of DappRadar's most active categories by raw UAW —
+      often outpacing DeFi in wallet count due to the frequent micro-transactions typical in games.
+      DappRadar tracks hundreds of blockchain games with dedicated analytics pages.
+    </p>
+
+    <div class="callout-grid">
+      <div class="mini">
+        <h3>Gaming-specific metrics</h3>
+        <p style="color:var(--muted)">In-game transaction volume (NFT purchases, token swaps, in-game asset trades), daily active wallets, and economic output per player. High UAW with low economic volume can indicate free-to-play bot activity.</p>
+        <div class="kpi-badges"><span>In-game volume</span><span>Asset transactions</span><span>Bot detection</span></div>
+      </div>
+      <div class="mini">
+        <h3>Chain breakdown for gaming</h3>
+        <p style="color:var(--muted)">Blockchain gaming activity is heavily concentrated on WAX, Ronin (Axie), BNB Chain, and Polygon — chains optimised for low-cost, high-frequency transactions. Ethereum gaming is smaller due to gas costs.</p>
+        <div class="kpi-badges"><span>WAX</span><span>Ronin</span><span>BNB Chain</span></div>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>Gaming UAW interpretation:</strong> Blockchain games routinely show extremely high UAW
+      because automated farming bots create wallets and transact continuously.
+      Always compare a game's UAW against its economic output (volume per wallet) and
+      verify whether the UAW growth correlates with genuine new player acquisition
+      or just increased bot activity.
+    </div>
+  </section>
+
+  <!-- RADAR TOKEN -->
+  <section class="card" id="radar">
+    <h2>RADAR Token: Utility, Staking, and Governance on DappRadar</h2>
+    <p>
+      <strong>RADAR</strong> is DappRadar's native governance and utility token,
+      giving holders additional platform features and a role in shaping the platform's direction.
+    </p>
+    <ul style="padding-left:1.2rem; margin-top:.6rem">
+      <li style="margin-bottom:.5rem"><strong>Premium features:</strong> RADAR holders unlock enhanced analytics, extended historical data ranges, advanced portfolio tracking, and early access to new DappRadar features.</li>
+      <li style="margin-bottom:.5rem"><strong>Governance:</strong> Token holders vote on platform development priorities, new chain integrations, and feature roadmap decisions via on-chain and snapshot governance.</li>
+      <li style="margin-bottom:.5rem"><strong>Staking rewards:</strong> RADAR can be staked to earn platform revenue share — aligning token holders with DappRadar's commercial performance and long-term growth.</li>
+      <li style="margin-bottom:.5rem"><strong>Portfolio & identity features:</strong> RADAR powers personalised portfolio tracking and on-chain identity features within the DappRadar ecosystem.</li>
+      <li><strong>Pro subscriptions:</strong> Some advanced DappRadar Pro features are available via RADAR staking as an alternative to a fiat subscription.</li>
+    </ul>
+
+    <div class="note">
+      <strong>Verify current utility:</strong> RADAR token features evolve with platform updates.
+      Before acquiring RADAR specifically for platform access or staking returns, check the
+      current terms in the official DappRadar documentation — feature sets and staking APRs change over time.
+    </div>
+  </section>
+
+  <!-- DUE DILIGENCE -->
+  <section class="card" id="due-diligence">
+    <h2>Using DappRadar for Protocol and Collection Due Diligence</h2>
+    <p>
+      DappRadar is most powerful when used as one layer in a structured due diligence process
+      rather than as a standalone signal source.
+    </p>
+    <ol style="padding-left:1.3rem">
+      <li style="margin-bottom:.6rem">
+        <strong>Check 30-day UAW trend</strong> — is user activity growing, stable, or declining?
+        A new protocol with accelerating UAW is more interesting than a declining incumbent.
+      </li>
+      <li style="margin-bottom:.6rem">
+        <strong>Review volume and TVL alongside UAW</strong> — high UAW with very low volume
+        suggests bot or low-value activity. High volume with low UAW suggests whale concentration.
+        The healthiest protocols show balanced growth across all three metrics.
+      </li>
+      <li style="margin-bottom:.6rem">
+        <strong>Check historical chart for event-driven spikes</strong> — did UAW spike during an airdrop
+        and then drop back to baseline? That pattern suggests incentive-driven rather than
+        genuine organic growth.
+      </li>
+      <li style="margin-bottom:.6rem">
+        <strong>Compare against category peers</strong> — is this dapp gaining share within its category,
+        or is it declining relative to competitors even as absolute numbers look acceptable?
+      </li>
+      <li style="margin-bottom:.6rem">
+        <strong>Cross-reference TVL with DeFiLlama</strong> — for DeFi protocols, verify DappRadar's TVL
+        against DeFiLlama's independent figure. Large discrepancies warrant investigation.
+      </li>
+      <li>
+        <strong>Verify smart contract and team quality independently</strong> — DappRadar shows activity data,
+        not contract code quality. Always complement DappRadar research with a security audit check
+        and independent team verification.
+      </li>
+    </ol>
+  </section>
+
+  <!-- COMPARISON -->
+  <section class="card" id="comparison">
+    <h2>DappRadar vs DeFiLlama vs Nansen vs Messari: Choosing the Right Research Tool</h2>
+
+    <div class="table-wrap">
+      <table aria-label="Analytics platform comparison">
+        <thead>
+          <tr><th>Tool</th><th>Primary strength</th><th>Best used for</th><th>Free tier</th></tr>
+        </thead>
+        <tbody>
+          <tr class="hi">
+            <td>DappRadar</td>
+            <td>Cross-chain dapp activity (UAW, volume, tx count)</td>
+            <td>Discovering trending dapps, gaming analytics, NFT market overview</td>
+            <td class="ok">Strong</td>
+          </tr>
+          <tr>
+            <td>DeFiLlama</td>
+            <td>DeFi protocol TVL across all chains</td>
+            <td>DeFi TVL research, protocol fee revenue, chain dominance</td>
+            <td class="ok">Excellent — fully free</td>
+          </tr>
+          <tr class="hi">
+            <td>Nansen</td>
+            <td>Wallet labelling and smart money tracking</td>
+            <td>Following institutional and smart money wallets, token flow analysis</td>
+            <td class="err">Limited — mostly paid</td>
+          </tr>
+          <tr>
+            <td>Messari</td>
+            <td>Protocol fundamentals, research reports</td>
+            <td>Deep-dive protocol research, asset profiles, industry reports</td>
+            <td class="warn">Basic free, pro paid</td>
+          </tr>
+          <tr class="hi">
+            <td>Dune Analytics</td>
+            <td>Custom on-chain SQL queries</td>
+            <td>Custom research, protocol-specific dashboards, developer analytics</td>
+            <td class="ok">Good — community dashboards free</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note" style="margin-top:1rem">
+      <strong>Professional research stack:</strong> DappRadar for dapp activity discovery →
+      DeFiLlama for DeFi TVL verification → Nansen for wallet-level smart money tracking →
+      Dune for custom protocol-specific queries. Each tool covers ground the others don't.
+    </div>
+  </section>
+
+  <!-- BEST PRACTICES -->
+  <section class="card" id="best-practices">
+    <h2>Best Practices for Using DappRadar Effectively</h2>
+    <ul style="padding-left:1.2rem">
+      <li style="margin-bottom:.5rem"><strong>Always filter by 30-day UAW</strong> as your default view — 24-hour data is too noisy and easily gamed by short-term incentives or bot activity spikes.</li>
+      <li style="margin-bottom:.5rem"><strong>Compare metrics together</strong> — never evaluate a dapp on a single metric. A protocol with 100K UAW, $50M volume, and growing TVL tells a very different story than one with 100K UAW and $200K volume.</li>
+      <li style="margin-bottom:.5rem"><strong>Use category and chain filters together</strong> — the most meaningful comparison is a dapp vs its direct peers on the same chain in the same category, not absolute cross-category rankings.</li>
+      <li style="margin-bottom:.5rem"><strong>Look at trend direction, not just absolute rank</strong> — a #20 dapp growing 50% month-over-month is often more interesting than a stable #5 with flat growth.</li>
+      <li style="margin-bottom:.5rem"><strong>Cross-reference DappRadar data with independent sources</strong> — especially for DeFi TVL (DeFiLlama) and NFT volume (OpenSea, Blur native data). Discrepancies can reveal methodological differences worth understanding.</li>
+      <li style="margin-bottom:.5rem"><strong>Read DappRadar industry reports</strong> — published monthly and quarterly, these aggregate insights from the full dataset and often surface trends before they appear in mainstream crypto media.</li>
+      <li><strong>Treat gaming UAW with extra scepticism</strong> — blockchain gaming consistently shows bot-inflated UAW numbers. Volume per wallet and real economic output are more reliable signals in that category.</li>
+    </ul>
+  </section>
+
+  <!-- TROUBLESHOOTING -->
+  <section class="card" id="troubleshooting">
+    <h2>Troubleshooting DappRadar: Missing Dapps, Data Discrepancies, and Metric Questions</h2>
+
+    <h3>"The dapp I'm looking for isn't listed on DappRadar"</h3>
+    <ul style="padding-left:1.2rem">
+      <li>DappRadar indexes dapps that meet a minimum activity threshold — very new or very low-activity dapps may not yet be listed.</li>
+      <li>The dapp's chain may not be indexed yet. Check DappRadar's supported chain list against the chain the dapp is deployed on.</li>
+      <li>Some dapps can be submitted for listing via DappRadar's official listing process — check the developer documentation for the current submission process.</li>
+    </ul>
+
+    <h3>"DappRadar's TVL for a protocol looks different from DeFiLlama"</h3>
+    <ul style="padding-left:1.2rem">
+      <li>DappRadar and DeFiLlama use different methodologies for calculating TVL — primarily in how they handle multi-chain double-counting, staked vs. liquid positions, and which contracts are included.</li>
+      <li>For DeFi TVL research, DeFiLlama is the industry standard and typically the more granular source. DappRadar's balance metric is more useful as a relative trend indicator within its own dataset.</li>
+    </ul>
+
+    <h3>"UAW numbers dropped significantly overnight — is there a problem with the dapp?"</h3>
+    <ul style="padding-left:1.2rem">
+      <li>Large UAW drops often coincide with the end of an airdrop programme or liquidity mining incentive — bots and incentive farmers exit simultaneously when rewards stop.</li>
+      <li>Compare the current UAW against the pre-incentive baseline to assess whether the drop represents real user loss or just the departure of mercenary capital.</li>
+      <li>Check the dapp's official channels for announcements — technical issues or contract migrations can also cause sudden UAW changes.</li>
+    </ul>
+
+    <div class="note">
+      <strong>Data methodology matters:</strong> DappRadar counts wallet interactions at the smart contract level.
+      A single user completing five actions in a dapp counts as one UAW but five transactions.
+      Understanding this distinction helps interpret UAW vs. transaction count divergences correctly.
+    </div>
+  </section>
+
+  <!-- EEAT -->
+  <section class="eeat" id="eeat" aria-labelledby="eeat-title">
+    <h2 id="eeat-title">DappRadar: Authoritative References &amp; External Sources</h2>
+
+    <h3>DappRadar — Official Sources</h3>
+    <ul style="padding-left:1.2rem">
+      <li><a href="https://dappradar.com/" target="_blank" rel="noopener nofollow">DappRadar — Official Platform</a></li>
+      <li><a href="https://docs.dappradar.com/" target="_blank" rel="noopener nofollow">DappRadar — Official Documentation</a></li>
+      <li><a href="https://dappradar.com/blog" target="_blank" rel="noopener nofollow">DappRadar — Industry Reports &amp; Research Blog</a></li>
+      <li><a href="https://github.com/dappradar" target="_blank" rel="noopener nofollow">DappRadar — GitHub</a></li>
+    </ul>
+
+    <h3>Complementary Analytics Tools</h3>
+    <ul style="padding-left:1.2rem">
+      <li><a href="https://defillama.com/" target="_blank" rel="noopener nofollow">DeFiLlama — DeFi TVL Analytics</a></li>
+      <li><a href="https://nansen.ai/" target="_blank" rel="noopener nofollow">Nansen — Wallet Intelligence &amp; Smart Money Tracking</a></li>
+      <li><a href="https://messari.io/" target="_blank" rel="noopener nofollow">Messari — Crypto Research &amp; Protocol Intelligence</a></li>
+      <li><a href="https://dune.com/" target="_blank" rel="noopener nofollow">Dune Analytics — Custom On-chain Dashboards</a></li>
+    </ul>
+
+    <h3>Blockchain &amp; Web3 Research Context</h3>
+    <ul style="padding-left:1.2rem">
+      <li><a href="https://ethereum.org/en/dapps/" target="_blank" rel="noopener nofollow">Ethereum.org — What Are Dapps?</a></li>
+      <li><a href="https://blog.chainalysis.com/" target="_blank" rel="noopener nofollow">Chainalysis — Blockchain Data Research</a></li>
+    </ul>
+
+    <div class="note" style="margin-top:1.2rem">
+      <strong>About:</strong> Prepared by Crypto Finance Experts as a practical, SEO-oriented knowledge base for
+      <em>DappRadar</em>: dapp analytics, UAW metrics, TVL data, RADAR token, NFT and DeFi analytics, gaming, due diligence workflow, and platform comparison.
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="card" id="faq" aria-labelledby="faq-title">
+    <h2 id="faq-title" style="margin-top:0;border-top:none;padding-top:0">DappRadar: Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f1" id="b1">
+        <h3>What is DappRadar and what does it track?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f1" class="faq-content" role="region" aria-labelledby="b1">
+        <p>DappRadar is a cross-chain dapp analytics platform that indexes smart contract activity across 50+ blockchains. It tracks Unique Active Wallets (UAW), transaction volume, TVL, and other engagement metrics for thousands of dapps across DeFi, NFTs, gaming, social, and other categories. It is the industry standard for discovering and benchmarking dapp activity across the Web3 ecosystem.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f2" id="b2">
+        <h3>What does UAW mean on DappRadar?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f2" class="faq-content" role="region" aria-labelledby="b2">
+        <p>UAW stands for Unique Active Wallets — the number of distinct blockchain wallet addresses that interacted with a dapp's smart contracts in a given time period. It is the primary engagement metric on DappRadar. Important caveats: one person can use multiple wallets (inflating UAW), bots create and use wallets automatically, and incentive programmes temporarily inflate UAW with non-organic activity. Use UAW as a trend indicator, not an absolute user count.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f3" id="b3">
+        <h3>Is DappRadar free to use?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f3" class="faq-content" role="region" aria-labelledby="b3">
+        <p>DappRadar has a generous free tier that includes dapp rankings, basic analytics, NFT market data, and portfolio tracking. Premium features — extended historical data, advanced analytics, and Pro tools — are available via RADAR token staking or a paid subscription. The free tier is sufficient for most casual research needs; power users and developers benefit most from the Pro features.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f4" id="b4">
+        <h3>How accurate is DappRadar's data?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f4" class="faq-content" role="region" aria-labelledby="b4">
+        <p>DappRadar sources data directly from on-chain events — smart contract interaction logs — making it accurate for what it measures. The key accuracy caveat is that on-chain data includes bots, multi-wallet users, and incentive-driven activity that inflates engagement metrics. DappRadar applies some bot filtering but no filter is perfect. Always interpret metrics in context and cross-reference against other sources for critical decisions.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f5" id="b5">
+        <h3>What is the RADAR token used for?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f5" class="faq-content" role="region" aria-labelledby="b5">
+        <p>RADAR is DappRadar's native token with multiple functions: unlocking premium platform features (extended analytics, advanced data), governance (voting on platform development priorities), staking rewards (earning a share of platform revenue), and powering portfolio and identity features. The specific benefits available via RADAR evolve with platform updates — check the official documentation for current utility details before acquiring tokens for platform access.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f6" id="b6">
+        <h3>How does DappRadar differ from DeFiLlama?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f6" class="faq-content" role="region" aria-labelledby="b6">
+        <p>DappRadar and DeFiLlama serve different primary purposes. DappRadar focuses on dapp activity — UAW, transaction counts, user engagement across all dapp categories including gaming, NFTs, and social. DeFiLlama specialises exclusively in DeFi TVL with granular protocol breakdowns and fee revenue data. For DeFi TVL research, DeFiLlama is the industry standard. For cross-category dapp activity discovery, DappRadar is the go-to platform. Most serious researchers use both.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f7" id="b7">
+        <h3>How many blockchains does DappRadar support?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f7" class="faq-content" role="region" aria-labelledby="b7">
+        <p>DappRadar supports 50+ blockchains as of 2026, covering all major EVM chains (Ethereum, Arbitrum, Optimism, Base, BNB Chain, Polygon, Avalanche), gaming-focused chains (WAX, Ronin, IMX), Solana, and many more. The list expands regularly as new chains reach sufficient dapp activity to warrant indexing. Check the official DappRadar platform for the current full list of supported networks.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f8" id="b8">
+        <h3>Can I track my own portfolio on DappRadar?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f8" class="faq-content" role="region" aria-labelledby="b8">
+        <p>Yes — DappRadar includes a portfolio tracking feature that aggregates your token holdings and NFT collection across multiple chains and wallets into a single dashboard. Connect your wallet address (read-only, no signing required) to view your cross-chain portfolio value, NFT holdings, and DeFi positions. Advanced portfolio features are available via RADAR token holdings or a Pro subscription.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f9" id="b9">
+        <h3>Why do blockchain game UAW numbers seem unrealistically high?</h3><span class="faq-plus">+</span>
+      </button>
+      <div id="f9" class="faq-content" role="region" aria-labelledby="b9">
+        <p>Blockchain games consistently show very high UAW relative to their apparent player base for two main reasons: automated farming bots create wallets and transact continuously to earn in-game rewards, and play-to-earn incentives attract users who create multiple wallets to maximise earnings. DappRadar applies some bot filtering but cannot eliminate all automated activity. For gaming research, complement UAW with volume-per-wallet and verify whether activity corresponds to real game downloads or player community size.</p>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer class="container" role="contentinfo" style="padding:2.5rem 0; border-top:1px solid var(--line); margin-top:2rem">
+  <p style="color:var(--dim); font-size:.93rem">© 2026 DappRadar Guide. Educational content with a research-first focus. Not financial advice.</p>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll('.faq-button').forEach(b => {
+        b.setAttribute('aria-expanded', 'false');
+        const c = document.getElementById(b.getAttribute('aria-controls'));
+        c.classList.remove('open'); c.style.maxHeight = '0';
+      });
+      if (!isOpen) {
+        btn.setAttribute('aria-expanded', 'true');
+        const content = document.getElementById(btn.getAttribute('aria-controls'));
+        content.classList.add('open');
+        content.style.maxHeight = content.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
